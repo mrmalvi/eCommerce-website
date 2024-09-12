@@ -7,7 +7,9 @@ module Admin
     end
 
     def show
-      @products = @category.products
+      subcategory_ids = @category.subcategories.pluck(:id)
+      category_ids = [@category.id] + subcategory_ids
+      @products = Product.where(category_id: category_ids)
       @products = @products.where('price >= ?', params[:min_price].to_f) if params[:min_price].present?
       @products = @products.where('price <= ?', params[:max_price].to_f) if params[:max_price].present?
       if params[:colors].present?

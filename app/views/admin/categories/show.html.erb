@@ -30,6 +30,7 @@
     </div>
 
     <div class="col-md-9">
+      <h3> <%= "category: #{@category.parent_category&.name}" if @category.parent_category&.name? %></h3>
       <h3>Products in <%= @category.name %></h3>
       <div class="row">
         <% if @products.present? %>
