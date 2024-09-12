@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'mini_magick'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
+gem 'flex-slider-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -49,8 +50,10 @@ gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.1'
 gem 'sassc-rails'
 gem 'devise'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+# gem 'elasticsearch-model'
+# gem 'elasticsearch-rails'
+gem 'elasticsearch', '~> 7.17.7'
+gem 'searchkick', '~> 5.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -80,3 +83,5 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "webpacker", "~> 5.4"

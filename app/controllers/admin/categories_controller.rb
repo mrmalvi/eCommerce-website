@@ -9,19 +9,35 @@ module Admin
     def show
       subcategory_ids = @category.subcategories.ids
       category_ids = [@category.id] + subcategory_ids
-      @products = Product.where(category_id: category_ids)
-      @products = @products.where('price >= ?', params[:min_price].to_f) if params[:min_price].present?
-      @products = @products.where('price <= ?', params[:max_price].to_f) if params[:max_price].present?
-      if params[:colors].present?
-        colors = params[:colors].split(',').map { |color| "%#{color.strip}%" }
-        @products = @products.where(colors.map { 'colors LIKE ?' }.join(' OR '), *colors)
+
+      search_field = params[:search].present? ? params[:search] : '*'
+      category_id = params[:category].present? ? params[:category].to_i : nil
+      min_price = params[:min_price].present? ? params[:min_price].to_f : nil
+      max_price = params[:max_price].present? ? params[:max_price].to_f : nil
+      colors = params[:colors].present? ? params[:colors].split(',') : nil
+      sizes = params[:sizes].present? ? params[:sizes].split(',') : nil
+
+      search_conditions = { category_id: category_ids }
+      search_conditions[:price] = { gte: min_price, lte: max_price } if min_price || max_price
+      search_conditions[:colors] = colors if colors
+      search_conditions[:sizes] = sizes if sizes
+
+      if params[:search].present?
+        search_conditions[:or] = [
+          { title: { wildcard: "*#{params[:search]}*" } },
+          { description: { wildcard: "*#{params[:search]}*" } }
+        ]
       end
 
-      if params[:sizes].present?
-        sizes = params[:sizes].split(',').map { |size| "%#{size.strip}%" }
-        @products = @products.where(sizes.map { 'sizes LIKE ?' }.join(' OR '), *sizes)
+      @products = Product.search('*', where: search_conditions)
+      respond_to do |format|
+        format.html { render :show }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('category_products',
+                                                   partial: 'admin/categories/products',
+                                                   locals: { products: @products })
+        end
       end
-      @products
     end
 
     def new
