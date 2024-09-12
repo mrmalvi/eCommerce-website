@@ -1,0 +1,30 @@
+<%= link_to 'New Category', new_admin_category_path, class: "btn btn-primary" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @categories.present? %>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.name %></td>
+          <td>
+            <%= link_to 'Show', admin_category_path(category), class: "btn btn-success" %>
+            <%= link_to 'Edit', edit_admin_category_path(category), class: "btn btn-warning" %>
+            <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="9" class="text-center">No categories found.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

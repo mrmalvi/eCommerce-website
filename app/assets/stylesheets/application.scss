@@ -1,0 +1,85 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+.hero {
+  background: url('landing-page-main.jpg') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+
+  .product-image-main {
+    object-fit: fill;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .lSPager.lSGallery {
+    li {
+      border: 0.86px solid gray;
+      border-radius: 4px;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.active {
+        border: 1px solid var(--primary-color);
+      }
+
+      img {
+        object-fit: fill;
+      }
+    }
+  }
+
+  .lSSlideOuter.vertical {
+    padding-left: 150px;
+
+    &.noPager {
+      padding-right: 76px !important;
+    }
+
+    .lSGallery {
+      left: 0;
+
+      li {
+        max-height: 100px !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      padding-left: 100px !important;
+      padding-right: 0 !important;
+
+      &.noPager {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    }
+  }
+

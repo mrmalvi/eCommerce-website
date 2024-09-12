@@ -1,0 +1,39 @@
+<link type="text/css" rel="stylesheet" href="css/lightslider.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/lightslider.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js" integrity="sha512-Gfrxsz93rxFuB7KSYlln3wFqBaXUc1jtt3dGCp+2jTb563qYvnUBM/GP2ZUtRC27STN/zUamFtVFAIsRFoT6/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.css" integrity="sha512-+1GzNJIJQ0SwHimHEEDQ0jbyQuglxEdmQmKsu8KI7QkMPAnyDrL9TAnVyLPEttcTxlnLVzaQgxv2FpLCLtli0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="mt-4 d-flex justify-content-start align-items-start">
+  <div class="col-6">
+    <ul id="product-assets-slider">
+      <% @product.images.each do |image| %>
+        <li data-thumb="<%= image.url %>" class="d-flex justify-content-center align-items-center">
+          <%= image_tag(image, width: "100%", height: "100%", class: "product-image-main") if image %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-6 d-flex gap-3 flex-column">
+   <h1><%= @product.title %></h1>
+   <h6>category: <%= link_to @product.category.name, admin_products_path(category_id: @product.category_id) %></h6>
+   <h5><%= @product.price %></h5>
+   <p><%= @product.description %></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#product-assets-slider").lightSlider({
+      gallery: true,
+      item: 1,
+      loop: true,
+      slideMargin: 0,
+      verticalHeight: 385,
+      thumbItem: 4,
+      thumbMargin: 6,
+      vThumbWidth: 70,
+      vertical: true
+    });
+  })
+</script>

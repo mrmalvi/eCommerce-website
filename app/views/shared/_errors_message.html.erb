@@ -1,0 +1,23 @@
+<% flash.each do |type, msg| %>
+  <% type = "error" if type == "alert" %>
+  <div class="alert alert-<%= type %> alert-dismissible m-2 fade show flash-message" role="alert">
+    <%= msg %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+<style>
+  .flash-message {
+    animation: fadeOut 15s forwards;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100%);
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Filters</h3>
+      <%= form_with url: admin_category_path(@category), method: :get, local: true do |form| %>
+
+        <div class="form-group">
+          <label for="min_price">Min Price</label>
+          <%= form.number_field :min_price, value: params[:min_price], class: "form-control", placeholder: "Min Price" %>
+        </div>
+
+        <div class="form-group">
+          <label for="max_price">Max Price</label>
+          <%= form.number_field :max_price, value: params[:max_price], class: "form-control", placeholder: "Max Price" %>
+        </div>
+
+        <div class="form-group">
+          <label for="colors">Colors</label>
+          <%= form.text_field :colors, value: params[:colors], class: "form-control", placeholder: "e.g., red, blue, green" %>
+        </div>
+
+        <div class="form-group">
+          <label for="sizes">Sizes</label>
+          <%= form.text_field :sizes, value: params[:sizes], class: "form-control", placeholder: "e.g., S, M, L" %>
+        </div>
+
+        <%= form.submit "Apply Filters", class: "btn btn-primary" %>
+        <%= link_to 'Clear', admin_category_path(@category), class: "btn btn-warning" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-9">
+      <h3>Products in <%= @category.name %></h3>
+      <div class="row">
+        <% if @products.present? %>
+          <% @products.each do |product| %>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <%= link_to admin_product_path(product) do %>
+                  <%= image_tag product.images.first, class: "card-img-top", alt: product.title if product.images.attached? %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= product.title %></h5>
+                  <p class="card-text"><%= number_to_currency(product.price, unit: "Rs ") %></p>
+                  <p class="card-text">Color: <%= product.colors.join(', ') %></p>
+                  <p class="card-text">Size: <%= product.sizes.join(', ') %></p>
+                  <%= link_to "View Product", admin_product_path(product), class: "btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="col-md-4 mb-4">
+            <td colspan="9" class="text-center">No products found.</td>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

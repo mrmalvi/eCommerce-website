@@ -1,0 +1,40 @@
+<%= link_to 'New Product', new_admin_product_path, class: "btn btn-primary" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First look</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @products.present? %>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td>
+            <%= link_to admin_product_path(product) do %>
+              <%= image_tag(product.images.first, width: "80px", height: "80px") if product.images.attached? %>
+            <% end %>
+          </td>
+          <td><%= product.title %></td>
+          <td><%= product.category&.name %></td>
+          <td><%= product.description %></td>
+          <td>
+            <%= link_to 'Show', admin_product_path(product), class: "btn btn-success" %>
+            <%= link_to 'Edit', edit_admin_product_path(product), class: "btn btn-warning" %>
+            <%= link_to 'Delete', admin_product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="9" class="text-center">No products found.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

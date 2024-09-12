@@ -1,0 +1,24 @@
+<header class="bg-primary text-white">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">eCommerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= admin_categories_path %>">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= admin_products_path %>">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-light text-primary", form_class: "d-inline" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
