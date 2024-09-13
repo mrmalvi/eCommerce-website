@@ -1,0 +1,29 @@
+<% @products ||= products %>
+<div class="col-md-12 mt-5">
+  <h3> <%= "category: #{@category.parent_category&.name}" if @category.parent_category&.name? %></h3>
+  <h3>Products in <%= @category.name %></h3>
+  <div class="row mt-5">
+    <% if @products.present? %>
+      <% @products.each do |product| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <%= link_to admin_product_path(product) do %>
+              <%= image_tag product.images.first, class: "card-img-top", alt: product.title if product.images.attached? %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.title %></h5>
+              <p class="card-text"><%= number_to_currency(product.price, unit: "Rs ") %></p>
+              <p class="card-text">Color: <%= product.colors.join(', ') %></p>
+              <p class="card-text">Size: <%= product.sizes.join(', ') %></p>
+              <%= link_to "View Product", admin_product_path(product), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-4 mb-4">
+        <td colspan="9" class="text-center">No products found.</td>
+      </div>
+    <% end %>
+  </div>
+</div>
