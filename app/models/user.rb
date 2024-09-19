@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { user: 'user', admin: 'admin' }
+  enum status: { active: 'active', inactive: 'inactive', banned: 'banned' }
 
   before_create :set_default_role
 
