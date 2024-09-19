@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/breamware/sidekiq-batch.git
+  revision: da3f35441cad206b9fc6bc9f231cb252f3b31c61
+  branch: master
+  specs:
+    sidekiq-batch (0.2.0)
+      sidekiq (>= 7, < 8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -90,6 +98,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.3.4)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.2)
@@ -101,6 +110,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.1)
     elasticsearch (7.17.11)
       elasticsearch-api (= 7.17.11)
       elasticsearch-transport (= 7.17.11)
@@ -111,7 +121,14 @@ GEM
       faraday (>= 1, < 3)
       multi_json
     erubi (1.13.0)
+    et-orbi (1.2.11)
+      tzinfo
     execjs (2.9.1)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     faraday (2.11.0)
       faraday-net_http (>= 2.0, < 3.4)
       logger
@@ -119,6 +136,9 @@ GEM
       net-http
     ffi (1.17.0-x86_64-darwin)
     flex-slider-rails (2.7.0)
+    fugit (1.11.1)
+      et-orbi (~> 1, >= 1.2.11)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -177,6 +197,7 @@ GEM
     public_suffix (6.0.1)
     puma (5.6.8)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.8.1)
     rack (2.2.9)
     rack-proxy (0.7.7)
@@ -215,6 +236,8 @@ GEM
     rdoc (6.7.0)
       psych (>= 4.0.0)
     redis (4.8.1)
+    redis-client (0.22.2)
+      connection_pool
     regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
@@ -222,6 +245,23 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.3.7)
+    rspec-core (3.13.1)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.0.4)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -241,6 +281,18 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
+    sidekiq (7.3.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      logger
+      rack (>= 2.2.4)
+      redis-client (>= 0.22.2)
+    sidekiq-cron (1.12.0)
+      fugit (~> 1.8)
+      globalid (>= 1.0.1)
+      sidekiq (>= 6)
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -298,6 +350,7 @@ DEPENDENCIES
   debug
   devise
   elasticsearch (~> 7.17.7)
+  factory_bot_rails
   flex-slider-rails
   importmap-rails
   jbuilder
@@ -306,9 +359,14 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.4)
   redis (~> 4.0)
+  rspec-rails (~> 6.0.0)
   sassc-rails
   searchkick (~> 5.1)
   selenium-webdriver
+  shoulda-matchers (~> 5.0)
+  sidekiq
+  sidekiq-batch!
+  sidekiq-cron
   simple_form
   sprockets-rails
   sqlite3 (~> 1.4)
