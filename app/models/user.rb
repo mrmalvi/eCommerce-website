@@ -7,6 +7,8 @@ class User < ApplicationRecord
   enum role: { user: 'user', admin: 'admin' }
   enum status: { active: 'active', inactive: 'inactive', banned: 'banned' }
 
+  has_many :login_activities, as: :user
+
   before_create :set_default_role
 
   def email_required?
