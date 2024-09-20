@@ -26,6 +26,10 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'flex-slider-rails'
 
+gem "sidekiq"
+gem "sidekiq-cron"
+gem 'sidekiq-batch', github: "breamware/sidekiq-batch", branch: 'master'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
@@ -50,10 +54,12 @@ gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.1'
 gem 'sassc-rails'
 gem 'devise'
+gem "authtrail"
 # gem 'elasticsearch-model'
 # gem 'elasticsearch-rails'
 gem 'elasticsearch', '~> 7.17.7'
 gem 'searchkick', '~> 5.1'
+gem 'dotenv-rails'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

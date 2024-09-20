@@ -36,6 +36,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  config.active_record.encryption.key = ENV['ACTIVE_RECORD_ENCRYPTION_KEY']
+  config.active_record.encryption.key_derivation_salt = ENV['ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT']
+  config.active_record.encryption.deterministic_key = ENV['ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY']
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
