@@ -270,6 +270,8 @@ GEM
       rspec-support (~> 3.12)
     rspec-support (3.13.1)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -369,6 +371,7 @@ DEPENDENCIES
   rails (~> 7.0.8, >= 7.0.8.4)
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
+  sass-rails (>= 6)
   sassc-rails
   searchkick (~> 5.1)
   selenium-webdriver
