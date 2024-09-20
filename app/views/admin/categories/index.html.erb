@@ -1,20 +1,20 @@
 <div class="py-5">
-  <div class="d-flex justify-content-end"><%= link_to 'New Category', new_admin_category_path, class: "btn btn-primary" %></div>
-  <table class="table table-striped mt-4">
+  <div class="d-flex justify-content-end"><%= link_to 'New Category', new_admin_category_path, class: "btn btn-primary button-color" %></div>
+  <table class="table table-bordered mt-4">
     <thead class="table-dark">
-      <tr>
+      <tr class="d-flex justify-content-between">
         <th>#</th>
         <th>Name</th>
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody class="table-group-divider">
+    <tbody>
       <% if @categories.present? %>
         <% @categories.each do |category| %>
-          <tr>
+          <tr class="d-flex justify-content-between">
             <td><%= category.id %></td>
             <td><%= category.name %></td>
-            <td>
+            <td >
               <%= link_to 'Show', admin_category_path(category), class: "btn btn-success" %>
               <%= link_to 'Edit', edit_admin_category_path(category), class: "btn btn-warning" %>
               <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
