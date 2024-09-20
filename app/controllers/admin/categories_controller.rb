@@ -58,6 +58,12 @@ module Admin
     end
 
     def update
+      if @category.update(category_params)
+        redirect_to admin_categories_path, notice: 'Product has been successfully destroyed.'
+      else
+        flash[:error] = @category.errors.full_messages.to_sentence
+        render :edit
+      end
     end
 
     def destroy
