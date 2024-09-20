@@ -1,4 +1,3 @@
-<% @products ||= products %>
 <div class="col-md-12 mt-5">
   <h3> <%= "category: #{@category.parent_category&.name}" if @category.parent_category&.name? %></h3>
   <h3>Products in <%= @category.name %></h3>
