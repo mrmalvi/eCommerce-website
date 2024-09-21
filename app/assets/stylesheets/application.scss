@@ -15,6 +15,13 @@
  */
 @import "bootstrap";
 
+body {
+ background-image: url("karolina-bg-main.jpg");
+ background-color: #cccccc;
+ background-repeat:no-repeat;
+ background-size:cover;
+}
+
 .hero {
   background: url('landing-page-main.jpg') no-repeat center center;
   background-size: cover;
